@@ -1,0 +1,70 @@
+http://zvon.org/xxl/XPathTutorial/Output/example9.html
+
+
+html/body/table[4]/tbody/tr[3]/td/span[text()="BBB"]
+html/body/table[5]/tbody/tr[3]/td/span[text()="BBB"]
+==>
+html/body/table[*]/tbody/tr[3]/td/span[text()="BBB"]
+==>
+html/body/table/tbody/tr[3]/td/span[text()="BBB"]
+
+html/body/table/tbody/tr[3]/td/span
+
+
+html/body/table[*]/tbody/tr[3]/td/span[contains(text(),"B")]
+
+html/body/table/tbody/tr[3]/td/span[position() mod 2 =0]
+
+html/body/table/tbody/tr[3]/td/span[string-length(text())=3]
+==>
+html/body/table/tbody/tr[3]/td/span[string-length(text())<=3]
+
+html/body/table[4]/tbody/tr[3]/td/span[@class]
+=>
+html/body/table[4]/tbody/tr[3]/td/span[@class][2]
+
+
+html/body/table/tbody/tr[3]/*/span[position() mod 2 =1] | html/body/table/tbody/tr[3]/*/span[position() mod 2 =0]
+
+html/body/table/tbody/tr[3]/*/span[position() mod 2 =0 or position() mod 2 =1 ]
+
++ - * div = != < <= > >=  or and mod 
+html/body/table/tbody/tr[3]/*/span[(position()-1) mod 4 =0]
+
+常用函数
+节点集函数
+　  last() 返回当前上下文中的最后一个节点的位置号数。
+   position() 返回当前节点的位置的数字,位于第多少个。
+   count(node-set) 返回节点集node-set中的节点数。
+   id(mark) 根据在DTD中声明为ID类型的标识符选择元素,返回一个节点集。
+   name() 返回节点名称。
+   local-name() 返回不带名称空间的节点名称。
+   namespace-uri() 返回名称空间。
+
+字符串函数
+   string(object) 把节点集、数字、布尔值等转化成字串并返回。
+   format-number(num) 把数字转化成字串并返回。
+   concat(string1,string2...) 合并多个字串并返回。
+   starts-with(string1,string2) 如果字串string1开头带string2的所有字符则返回true,否则返回false。
+   contains(string1,string2) 如果字串string1包含string2的所有字符则返回true,否则返回false。
+   substring(string,number1,number2) 取string中从位置number1开始,number2长的子串,number2可省略。
+   substring-before(string1,string2) 取string1在string2第一次出现位置之前的子串。
+   substring-after(string,string) 取string1在string2第一次出现位置之后的子串。
+   string-length(string) 返回string的长度数字。
+　　　normalize-space(string) 清除string头尾的空白字符并且把连续的空白字符替换为一个再返回。
+   translate(string1,string2,string3) 假如string1中的字符在string2中有出现,那么替换为string3对应string2的同一位置的字符,假如string3这个位置取不到字符则删除string1的该字符。
+
+布尔函数
+    boolean(object) 非0和NaN的数字/非空节点/长度大于0的字串返回true,非基本类型的转换有时无法估计。
+    not(boolean)   对布尔值取反。
+    true() 返回true。
+    false() 返回false。
+    lang(string) 如果上下文节点的lang属性和string相同则返回true。
+
+数字函数
+   number(object) 使对象转化成数字,布尔值true为1,false为0;节点集首先转换成字符串,字符串转换成数字或者NaN。
+   sum(node-set) 对节点集node-set中的所有节点应用number()函数后返回和。
+   floor(number) 返回不大于数字number的最大整数。
+   ceiling(number) 返回不小于数字number的最小整数。
+   round(number) 返回和数字number的四舍五入结果。 
+
